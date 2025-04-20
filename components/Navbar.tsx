@@ -1,8 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import { useRouter } from 'next/router';
 
 const Navbar: React.FC = () => {
   const { toggleCart, cartItem } = useContext(CartContext);
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (searchQuery.trim()) {
+      // Navigate to home page with search query
+      router.push({
+        pathname: '/',
+        query: { search: searchQuery },
+      });
+    }
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 h-16">
@@ -10,7 +25,6 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <div className="flex items-center">
           <div className="text-primary font-bold text-2xl">
-            {/* Replace with your logo SVG */}
             <div className="h-8 w-24 relative">
               <div className="flex items-center">
                 <svg 
@@ -21,10 +35,42 @@ const Navbar: React.FC = () => {
                 >
                   <path d="M12 2C7.58 2 4 5.58 4 10c0 4.41 3.59 8 8 8s8-3.59 8-8c0-4.42-3.58-8-8-8zm-1 6V6h2v2h2v2h-2v2h-2v-2H9v-2h2z" />
                 </svg>
-                <span className="ml-1">FoodDelivery</span>
+                <span className="ml-1 hidden md:inline">FoodDelivery</span>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Search Bar */}
+        <div className="flex-1 mx-4 max-w-md">
+          <form onSubmit={handleSearch} className="relative">
+            <input
+              type="text"
+              placeholder="Buscar produtos..."
+              className="w-full py-2 pl-10 pr-4 text-sm bg-gray-100 border border-transparent rounded-xl focus:outline-none focus:bg-white focus:border-gray-300"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg
+                className="w-5 h-5 text-gray-400"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <button
+              type="submit"
+              className="absolute inset-y-0 right-0 flex items-center pr-3"
+            >
+              <span className="text-xs font-medium text-primary">Buscar</span>
+            </button>
+          </form>
         </div>
 
         {/* Cart Icon */}

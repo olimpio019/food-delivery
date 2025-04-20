@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Banner from '../components/Banner';
 import CategoryCard from '../components/CategoryCard';
 import ProductCard from '../components/ProductCard';
@@ -6,17 +7,66 @@ import { categories } from '../data/categories';
 import { products, getProductsByCategory } from '../data/products';
 
 const Home: React.FC = () => {
+  const router = useRouter();
+  const { search } = router.query;
   const [selectedCategory, setSelectedCategory] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState<string>('');
   
-  // Filter products based on selected category or show all if none selected
-  const filteredProducts = selectedCategory 
-    ? getProductsByCategory(selectedCategory) 
-    : products;
+  useEffect(() => {
+    // Update the search query when the URL parameter changes
+    if (search && typeof search === 'string') {
+      setSearchQuery(search);
+      // Reset category filter when searching
+      setSelectedCategory(0);
+    } else {
+      setSearchQuery('');
+    }
+  }, [search]);
+
+  // Filter products based on category and search query
+  const getFilteredProducts = () => {
+    let filtered = selectedCategory 
+      ? getProductsByCategory(selectedCategory) 
+      : products;
+      
+    // Apply search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(product => 
+        product.name.toLowerCase().includes(query) || 
+        product.description.toLowerCase().includes(query)
+      );
+    }
+    
+    return filtered;
+  };
+  
+  const filteredProducts = getFilteredProducts();
+
+  const handleCategorySelect = (categoryId: number) => {
+    setSelectedCategory(categoryId);
+    // Clear search query when selecting category
+    if (searchQuery) {
+      router.push('/');
+    }
+  };
 
   return (
     <div className="container mx-auto px-4">
-      {/* Banner */}
-      <Banner />
+      {/* Banner (hide when searching) */}
+      {!searchQuery && <Banner />}
+      
+      {/* Search results heading */}
+      {searchQuery && (
+        <div className="mt-4 mb-6">
+          <h2 className="text-xl font-bold text-gray-800 mb-2">
+            Resultados para: "{searchQuery}"
+          </h2>
+          <p className="text-gray-500 text-sm">
+            {filteredProducts.length} {filteredProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
+          </p>
+        </div>
+      )}
       
       {/* Categories */}
       <div className="mb-8">
@@ -29,7 +79,7 @@ const Home: React.FC = () => {
                 ? 'bg-primary/10 border-b-2 border-primary' 
                 : 'hover:bg-gray-100'
               } rounded-t-xl`}
-            onClick={() => setSelectedCategory(0)}
+            onClick={() => handleCategorySelect(0)}
           >
             <div 
               className={`w-12 h-12 rounded-full flex items-center justify-center
@@ -49,7 +99,7 @@ const Home: React.FC = () => {
               key={category.id}
               category={category}
               isActive={selectedCategory === category.id}
-              onClick={() => setSelectedCategory(category.id)}
+              onClick={() => handleCategorySelect(category.id)}
             />
           ))}
         </div>
@@ -59,13 +109,18 @@ const Home: React.FC = () => {
       <div>
         <div className="flex justify-between items-center mb-4 px-4">
           <h2 className="text-xl font-bold text-gray-800">
-            {selectedCategory 
-              ? categories.find(c => c.id === selectedCategory)?.name 
-              : 'Produtos populares'}
+            {searchQuery 
+              ? 'Resultados da pesquisa'
+              : selectedCategory 
+                ? categories.find(c => c.id === selectedCategory)?.name 
+                : 'Produtos populares'
+            }
           </h2>
-          <div className="text-primary font-medium text-sm cursor-pointer hover:underline">
-            Ver todos
-          </div>
+          {!searchQuery && (
+            <div className="text-primary font-medium text-sm cursor-pointer hover:underline">
+              Ver todos
+            </div>
+          )}
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
@@ -76,9 +131,19 @@ const Home: React.FC = () => {
         
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500">Nenhum produto encontrado nesta categoria.</p>
+            <p className="text-gray-500">
+              {searchQuery 
+                ? `Nenhum produto encontrado para "${searchQuery}".` 
+                : 'Nenhum produto encontrado nesta categoria.'
+              }
+            </p>
             <button 
-              onClick={() => setSelectedCategory(0)}
+              onClick={() => {
+                setSelectedCategory(0);
+                if (searchQuery) {
+                  router.push('/');
+                }
+              }}
               className="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition"
             >
               Ver todos os produtos
