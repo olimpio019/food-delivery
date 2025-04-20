@@ -16,8 +16,8 @@ export interface Product {
 export const products: Product[] = [
   {
     id: 1,
-    name: 'Pizza Margherita',
-    description: 'Molho de tomate, mussarela e manjericão fresco',
+    name: 'Pizza de calabresa',
+    description: 'Deliciosa pizza com molho de tomate artesanal, queijo mussarela derretido e generosas fatias de calabresa crocante sobre uma massa macia e dourada.',
     price: 29.99,
     originalPrice: 34.99,
     discount: 15,
@@ -25,8 +25,8 @@ export const products: Product[] = [
     categoryId: 1,
     isFeatured: true,
     color: 'F44336',
-    checkoutUrl: 'https://seusite.com/checkout/pizza-margherita',
-    imageUrl: 'https://exemplo.com/imagens/pizza-margherita.jpg'
+    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=3pksi2vdkw8nkmzoc5mlyjb9',
+    imageUrl: 'https://www.minhareceita.com.br/app/uploads/2022/12/pizza-de-pepperoni-caseira-portal-minha-receita.jpg'
   },
   {
     id: 2,
@@ -38,7 +38,7 @@ export const products: Product[] = [
     rating: 4.7,
     categoryId: 1,
     color: 'E53935',
-    checkoutUrl: 'https://seusite.com/checkout/pizza-pepperoni',
+    checkoutUrl: '',
     imageUrl: 'https://exemplo.com/imagens/pizza-pepperoni.jpg'
   },
   {

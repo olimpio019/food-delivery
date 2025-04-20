@@ -1,0 +1,64 @@
+react-dom-client.development.js:24869 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+pizza-pepperoni.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+hamburguer-classico.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+hamburguer-duplo.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+macarrao-carbonara.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+lasanha-bolonhesa.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+pudim-de-leite.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+websocket.js:42 [HMR] connected
+brownie-com-sorvete.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+refrigerante.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+suco-natural.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+hamburguer-vegano.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+pizza-vegana.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+bowl-de-acai.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+salada-caesar.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+combo-pizza-refrigerante.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+combo-familia.jpg:1 
+            
+            
+           Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+e5a6d404-ea70-41e7-a069-2029a9e19a53-00-3c351amcp0z1p.kirk.replit.dev/:1 Not allowed to load local resource: file:///C:/Users/marco/Downloads/ChatGPT%20Image%2019%20de%20abr.%20de%202025,%2019_50_50.png
+e5a6d404-ea70-41e7-a069-2029a9e19a53-00-3c351amcp0z1p.kirk.replit.dev/:1 Not allowed to load local resource: file:///C:/Users/marco/Downloads/ChatGPT%20Image%2019%20de%20abr.%20de%202025,%2019_50_50.png

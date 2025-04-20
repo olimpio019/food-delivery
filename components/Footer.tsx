@@ -55,17 +55,17 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-gray-600 hover:text-primary text-sm">
-                  São Paulo
+                  Campinas
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-600 hover:text-primary text-sm">
-                  Rio de Janeiro
+                 Sumaré
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-600 hover:text-primary text-sm">
-                  Brasília
+                  Hortolandia
                 </a>
               </li>
               <li>
