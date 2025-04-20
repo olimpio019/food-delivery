@@ -130,11 +130,20 @@ const Admin: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-700">
-          <p>
-            <strong>Dica:</strong> Você pode configurar diferentes URLs de gateway de pagamento para cada produto. 
-            Assegure-se de que as URLs inseridas são válidas e apontam para páginas de checkout existentes em seu provedor de pagamentos.
-          </p>
+        <div className="mt-6 space-y-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-700">
+            <p>
+              <strong>Dica:</strong> Você pode configurar diferentes URLs de gateway de pagamento para cada produto. 
+              Assegure-se de que as URLs inseridas são válidas e apontam para páginas de checkout existentes em seu provedor de pagamentos.
+            </p>
+          </div>
+          
+          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-sm text-yellow-700">
+            <p>
+              <strong>Acesso:</strong> Esta página de administração não é visível no menu principal. 
+              Para acessá-la no futuro, digite diretamente a URL: <code className="bg-yellow-100 px-1 py-0.5 rounded">/admin</code>
+            </p>
+          </div>
         </div>
       </div>
     </div>
