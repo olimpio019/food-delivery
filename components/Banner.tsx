@@ -5,7 +5,7 @@ const Banner: React.FC = () => {
     <div className="w-full h-48 md:h-64 lg:h-80 bg-primary relative rounded-2xl overflow-hidden my-4">
       <div 
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/images/banner.svg)' }}
+        style={{ backgroundImage: 'url(/images/banner.png)' }}
       ></div>
       <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12">
         <h1 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-2">

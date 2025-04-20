@@ -28,7 +28,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 200'%3E%3Crect fill='%23${product.color || 'F5F5F5'}' width='300' height='200'/%3E%3Ctext fill='%23555' font-family='sans-serif' font-size='18' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'%3E${product.name}%3C/text%3E%3C/svg%3E")`
+              backgroundImage: product.imageUrl 
+                ? `url("${product.imageUrl}")` 
+                : `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 200'%3E%3Crect fill='%23${product.color || 'F5F5F5'}' width='300' height='200'/%3E%3Ctext fill='%23555' font-family='sans-serif' font-size='18' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'%3E${product.name}%3C/text%3E%3C/svg%3E")`
             }}
           />
         </Link>

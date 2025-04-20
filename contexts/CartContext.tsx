@@ -27,31 +27,57 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
-// Função para obter URL de checkout para um produto
-const generateCheckoutUrl = (product: Product): string => {
-  // Primeiro, verifique se existe um checkoutUrl configurado no produto
-  if (product.checkoutUrl) {
-    return product.checkoutUrl;
-  }
+// Função para obter as configurações de um produto (checkout URL, imageUrl, etc)
+const getProductSettings = (product: Product): { checkoutUrl: string, imageUrl: string } => {
+  // Valores padrão
+  let checkoutUrl = product.checkoutUrl || '';
+  let imageUrl = product.imageUrl || '';
   
-  // Em seguida, verifica se há links salvos no localStorage
-  const savedLinks = typeof window !== 'undefined' ? localStorage.getItem('productCheckoutUrls') : null;
+  // Primeiro, verifique se existem configurações salvas no localStorage
+  const savedSettings = typeof window !== 'undefined' ? localStorage.getItem('productSettings') : null;
   
-  if (savedLinks) {
+  if (savedSettings) {
     try {
-      const links = JSON.parse(savedLinks);
-      const productLink = links.find((link: any) => link.id === product.id);
+      const settings = JSON.parse(savedSettings);
+      const productSetting = settings.find((setting: any) => setting.id === product.id);
       
-      if (productLink && productLink.checkoutUrl) {
-        return productLink.checkoutUrl;
+      if (productSetting) {
+        // Atualizar com as configurações salvas
+        if (productSetting.checkoutUrl) checkoutUrl = productSetting.checkoutUrl;
+        if (productSetting.imageUrl) imageUrl = productSetting.imageUrl;
       }
     } catch (error) {
-      console.error('Erro ao buscar links de checkout:', error);
+      console.error('Erro ao buscar configurações do produto:', error);
+    }
+  } else {
+    // Compatibilidade com formato antigo
+    const savedLinks = typeof window !== 'undefined' ? localStorage.getItem('productCheckoutUrls') : null;
+    
+    if (savedLinks) {
+      try {
+        const links = JSON.parse(savedLinks);
+        const productLink = links.find((link: any) => link.id === product.id);
+        
+        if (productLink && productLink.checkoutUrl) {
+          checkoutUrl = productLink.checkoutUrl;
+        }
+      } catch (error) {
+        console.error('Erro ao buscar links de checkout:', error);
+      }
     }
   }
   
-  // Como fallback, usa a página de checkout interna
-  return `/product/${product.id}/checkout`;
+  // Se checkoutUrl ainda estiver vazio, use o fallback da página interna
+  if (!checkoutUrl) {
+    checkoutUrl = `/product/${product.id}/checkout`;
+  }
+  
+  return { checkoutUrl, imageUrl };
+};
+
+// Função para obter URL de checkout para um produto
+const generateCheckoutUrl = (product: Product): string => {
+  return getProductSettings(product).checkoutUrl;
 };
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
@@ -63,10 +89,11 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   const addToCart = (product: Product) => {
-    const checkoutUrl = generateCheckoutUrl(product);
+    const { checkoutUrl, imageUrl } = getProductSettings(product);
     setCartItem({
       ...product,
-      checkoutUrl
+      checkoutUrl,
+      imageUrl: imageUrl || product.imageUrl
     });
   };
 

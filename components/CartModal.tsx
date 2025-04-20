@@ -63,7 +63,9 @@ const CartModal: React.FC = () => {
               <div 
                 className="w-20 h-20 bg-gray-200 rounded-xl mr-3 flex-shrink-0 bg-cover bg-center"
                 style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 80 80'%3E%3Crect fill='%23${cartItem.color || 'F5F5F5'}' width='80' height='80'/%3E%3Ctext fill='%23555' font-family='sans-serif' font-size='10' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'%3E${cartItem.name}%3C/text%3E%3C/svg%3E")`
+                  backgroundImage: cartItem.imageUrl 
+                    ? `url("${cartItem.imageUrl}")` 
+                    : `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 80 80'%3E%3Crect fill='%23${cartItem.color || 'F5F5F5'}' width='80' height='80'/%3E%3Ctext fill='%23555' font-family='sans-serif' font-size='10' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'%3E${cartItem.name}%3C/text%3E%3C/svg%3E")`
                 }}
               ></div>
               <div className="flex-1">

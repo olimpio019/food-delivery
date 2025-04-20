@@ -10,6 +10,7 @@ export interface Product {
   isFeatured?: boolean;
   color?: string;
   checkoutUrl?: string; // URL externa para o checkout do produto
+  imageUrl?: string;    // URL da imagem do produto
 }
 
 export const products: Product[] = [
