@@ -27,19 +27,31 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
-// Função para gerar URL de checkout para um produto
+// Função para obter URL de checkout para um produto
 const generateCheckoutUrl = (product: Product): string => {
-  // Aqui você normalmente teria uma chamada para seu serviço de pagamento
-  // Para simular, estamos gerando um link de checkout único baseado no produto
-  const baseUrl = 'https://checkout.example.com';
-  const params = new URLSearchParams({
-    product_id: product.id.toString(),
-    price: product.price.toString(),
-    name: product.name,
-    currency: 'BRL'
-  });
+  // Primeiro, verifique se existe um checkoutUrl configurado no produto
+  if (product.checkoutUrl) {
+    return product.checkoutUrl;
+  }
   
-  return `${baseUrl}?${params.toString()}`;
+  // Em seguida, verifica se há links salvos no localStorage
+  const savedLinks = typeof window !== 'undefined' ? localStorage.getItem('productCheckoutUrls') : null;
+  
+  if (savedLinks) {
+    try {
+      const links = JSON.parse(savedLinks);
+      const productLink = links.find((link: any) => link.id === product.id);
+      
+      if (productLink && productLink.checkoutUrl) {
+        return productLink.checkoutUrl;
+      }
+    } catch (error) {
+      console.error('Erro ao buscar links de checkout:', error);
+    }
+  }
+  
+  // Como fallback, usa a página de checkout interna
+  return `/product/${product.id}/checkout`;
 };
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {

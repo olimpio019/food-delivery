@@ -9,6 +9,7 @@ export interface Product {
   categoryId: number;
   isFeatured?: boolean;
   color?: string;
+  checkoutUrl?: string; // URL externa para o checkout do produto
 }
 
 export const products: Product[] = [

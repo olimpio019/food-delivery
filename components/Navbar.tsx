@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../contexts/CartContext';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const { toggleCart, cartItem } = useContext(CartContext);
@@ -22,8 +23,8 @@ const Navbar: React.FC = () => {
   return (
     <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 h-16">
       <div className="container mx-auto px-4 h-full flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center">
+        {/* Logo and Admin Link */}
+        <div className="flex items-center space-x-4">
           <div className="text-primary font-bold text-2xl">
             <div className="h-8 w-24 relative">
               <div className="flex items-center">
@@ -39,6 +40,10 @@ const Navbar: React.FC = () => {
               </div>
             </div>
           </div>
+          
+          <Link href="/admin" className="text-gray-600 hover:text-primary text-sm font-medium hidden sm:block">
+            Admin
+          </Link>
         </div>
 
         {/* Search Bar */}
