@@ -14,20 +14,7 @@ export interface Product {
 }
 
 export const products: Product[] = [
-  {
-    id: 1,
-    name: 'Pizza de calabresa',
-    description: 'Deliciosa pizza com molho de tomate artesanal, queijo mussarela derretido e generosas fatias de calabresa crocante sobre uma massa macia e dourada.',
-    price: 29.99,
-    originalPrice: 34.99,
-    discount: 15,
-    rating: 4.8,
-    categoryId: 1,
-    isFeatured: true,
-    color: 'F44336',
-    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=3pksi2vdkw8nkmzoc5mlyjb9',
-    imageUrl: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=600&auto=format&fit=crop'
-  },
+ 
   {
     id: 2,
     name: 'Pizza Pepperoni',
@@ -38,7 +25,7 @@ export const products: Product[] = [
     rating: 4.7,
     categoryId: 1,
     color: 'E53935',
-    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=your-id-here',
+    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=2o9uavulpz6i635wb6irkhmn',
     imageUrl: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=600&auto=format&fit=crop'
   },
   {
@@ -80,6 +67,8 @@ export const products: Product[] = [
     checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=your-id-here',
     imageUrl: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=600&auto=format&fit=crop'
   }
+  
+
   //  The rest of the products were removed in the edited code.  Adding them back would require more information.
 ];
 
