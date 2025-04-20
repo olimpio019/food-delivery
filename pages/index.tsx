@@ -13,11 +13,25 @@ const Home: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [products, setProducts] = useState<Product[]>([]);
   
-  // Load product settings from localStorage
+  // Load products and their settings from localStorage
   useEffect(() => {
-    const loadProductSettings = () => {
+    const loadProductsWithSettings = () => {
       // Start with original products
       let productsWithSettings = [...originalProducts];
+      let customProducts: Product[] = [];
+      
+      // Load custom products if they exist
+      const savedCustomProducts = typeof window !== 'undefined' ? localStorage.getItem('customProducts') : null;
+      if (savedCustomProducts) {
+        try {
+          customProducts = JSON.parse(savedCustomProducts);
+        } catch (error) {
+          console.error('Error loading custom products:', error);
+        }
+      }
+      
+      // Add custom products to the list
+      productsWithSettings = [...productsWithSettings, ...customProducts];
       
       // Check if we have saved settings
       const savedSettings = typeof window !== 'undefined' ? localStorage.getItem('productSettings') : null;
@@ -27,7 +41,7 @@ const Home: React.FC = () => {
           const settings = JSON.parse(savedSettings);
           
           // Apply settings to products
-          productsWithSettings = originalProducts.map(product => {
+          productsWithSettings = productsWithSettings.map(product => {
             const productSetting = settings.find((s: any) => s.id === product.id);
             
             if (productSetting) {
@@ -48,7 +62,7 @@ const Home: React.FC = () => {
       setProducts(productsWithSettings);
     };
     
-    loadProductSettings();
+    loadProductsWithSettings();
   }, []);
   
   // Function to get products by category with settings applied

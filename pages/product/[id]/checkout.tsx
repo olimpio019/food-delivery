@@ -14,7 +14,21 @@ const ProductCheckout: React.FC = () => {
     if (id) {
       // Encontrar o produto pelo ID
       const productId = parseInt(id as string);
-      let foundProduct = products.find(p => p.id === productId);
+      
+      // Carregar produtos padrão e personalizados
+      let allProducts = [...products];
+      const savedCustomProducts = typeof window !== 'undefined' ? localStorage.getItem('customProducts') : null;
+      
+      if (savedCustomProducts) {
+        try {
+          const customProducts = JSON.parse(savedCustomProducts);
+          allProducts = [...allProducts, ...customProducts];
+        } catch (error) {
+          console.error('Erro ao carregar produtos personalizados:', error);
+        }
+      }
+      
+      let foundProduct = allProducts.find(p => p.id === productId);
       
       if (foundProduct) {
         // Verificar se existem configurações guardadas para o produto
