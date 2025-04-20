@@ -8,7 +8,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { cartItem, addToCart, removeFromCart, getCheckoutUrl } = useContext(CartContext);
+  const { cartItem, addToCart, removeFromCart } = useContext(CartContext);
   
   const isInCart = cartItem?.id === product.id;
 
@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Quick Checkout Button */}
         <div className="absolute bottom-2 right-2">
           <a
-            href={getCheckoutUrl(product)}
+            href={product.checkoutUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-primary text-xs font-bold px-2 py-1 rounded-lg shadow-md hover:bg-primary hover:text-white transition-all duration-300"

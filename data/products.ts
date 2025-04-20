@@ -9,8 +9,8 @@ export interface Product {
   categoryId: number;
   isFeatured?: boolean;
   color?: string;
-  checkoutUrl?: string; // URL externa para o checkout do produto
-  imageUrl?: string;    // URL da imagem do produto
+  checkoutUrl: string;
+  imageUrl: string;
 }
 
 export const products: Product[] = [
@@ -24,7 +24,9 @@ export const products: Product[] = [
     rating: 4.8,
     categoryId: 1,
     isFeatured: true,
-    color: 'F44336'
+    color: 'F44336',
+    checkoutUrl: 'https://seusite.com/checkout/pizza-margherita',
+    imageUrl: 'https://exemplo.com/imagens/pizza-margherita.jpg'
   },
   {
     id: 2,
@@ -35,7 +37,9 @@ export const products: Product[] = [
     discount: 13,
     rating: 4.7,
     categoryId: 1,
-    color: 'E53935'
+    color: 'E53935',
+    checkoutUrl: 'https://seusite.com/checkout/pizza-pepperoni',
+    imageUrl: 'https://exemplo.com/imagens/pizza-pepperoni.jpg'
   },
   {
     id: 3,
@@ -47,7 +51,9 @@ export const products: Product[] = [
     rating: 4.6,
     categoryId: 2,
     isFeatured: true,
-    color: 'F4511E'
+    color: 'F4511E',
+    checkoutUrl: 'https://seusite.com/checkout/hamburguer-classico',
+    imageUrl: 'https://exemplo.com/imagens/hamburguer-classico.jpg'
   },
   {
     id: 4,
@@ -58,7 +64,9 @@ export const products: Product[] = [
     discount: 12,
     rating: 4.9,
     categoryId: 2,
-    color: 'FF7043'
+    color: 'FF7043',
+    checkoutUrl: 'https://seusite.com/checkout/hamburguer-duplo',
+    imageUrl: 'https://exemplo.com/imagens/hamburguer-duplo.jpg'
   },
   {
     id: 5,
@@ -68,7 +76,9 @@ export const products: Product[] = [
     discount: 0,
     rating: 4.5,
     categoryId: 3,
-    color: 'FB8C00'
+    color: 'FB8C00',
+    checkoutUrl: 'https://seusite.com/checkout/macarrao-carbonara',
+    imageUrl: 'https://exemplo.com/imagens/macarrao-carbonara.jpg'
   },
   {
     id: 6,
@@ -80,7 +90,9 @@ export const products: Product[] = [
     rating: 4.7,
     categoryId: 3,
     isFeatured: true,
-    color: 'FF9800'
+    color: 'FF9800',
+    checkoutUrl: 'https://seusite.com/checkout/lasanha-bolonhesa',
+    imageUrl: 'https://exemplo.com/imagens/lasanha-bolonhesa.jpg'
   },
   {
     id: 7,
@@ -90,7 +102,9 @@ export const products: Product[] = [
     discount: 0,
     rating: 4.6,
     categoryId: 4,
-    color: '7B1FA2'
+    color: '7B1FA2',
+    checkoutUrl: 'https://seusite.com/checkout/pudim-de-leite',
+    imageUrl: 'https://exemplo.com/imagens/pudim-de-leite.jpg'
   },
   {
     id: 8,
@@ -102,7 +116,9 @@ export const products: Product[] = [
     rating: 4.8,
     categoryId: 4,
     isFeatured: true,
-    color: '9C27B0'
+    color: '9C27B0',
+    checkoutUrl: 'https://seusite.com/checkout/brownie-com-sorvete',
+    imageUrl: 'https://exemplo.com/imagens/brownie-com-sorvete.jpg'
   },
   {
     id: 9,
@@ -111,7 +127,9 @@ export const products: Product[] = [
     price: 5.99,
     discount: 0,
     categoryId: 5,
-    color: '1976D2'
+    color: '1976D2',
+    checkoutUrl: 'https://seusite.com/checkout/refrigerante',
+    imageUrl: 'https://exemplo.com/imagens/refrigerante.jpg'
   },
   {
     id: 10,
@@ -121,7 +139,9 @@ export const products: Product[] = [
     discount: 0,
     rating: 4.5,
     categoryId: 5,
-    color: '2196F3'
+    color: '2196F3',
+    checkoutUrl: 'https://seusite.com/checkout/suco-natural',
+    imageUrl: 'https://exemplo.com/imagens/suco-natural.jpg'
   },
   {
     id: 11,
@@ -132,7 +152,9 @@ export const products: Product[] = [
     discount: 10,
     rating: 4.4,
     categoryId: 6,
-    color: '43A047'
+    color: '43A047',
+    checkoutUrl: 'https://seusite.com/checkout/hamburguer-vegano',
+    imageUrl: 'https://exemplo.com/imagens/hamburguer-vegano.jpg'
   },
   {
     id: 12,
@@ -142,7 +164,9 @@ export const products: Product[] = [
     discount: 0,
     rating: 4.3,
     categoryId: 6,
-    color: '4CAF50'
+    color: '4CAF50',
+    checkoutUrl: 'https://seusite.com/checkout/pizza-vegana',
+    imageUrl: 'https://exemplo.com/imagens/pizza-vegana.jpg'
   },
   {
     id: 13,
@@ -154,7 +178,9 @@ export const products: Product[] = [
     rating: 4.7,
     categoryId: 7,
     isFeatured: true,
-    color: '00897B'
+    color: '00897B',
+    checkoutUrl: 'https://seusite.com/checkout/bowl-de-acai',
+    imageUrl: 'https://exemplo.com/imagens/bowl-de-acai.jpg'
   },
   {
     id: 14,
@@ -164,7 +190,9 @@ export const products: Product[] = [
     discount: 0,
     rating: 4.5,
     categoryId: 7,
-    color: '009688'
+    color: '009688',
+    checkoutUrl: 'https://seusite.com/checkout/salada-caesar',
+    imageUrl: 'https://exemplo.com/imagens/salada-caesar.jpg'
   },
   {
     id: 15,
@@ -176,7 +204,9 @@ export const products: Product[] = [
     rating: 4.8,
     categoryId: 8,
     isFeatured: true,
-    color: 'C2185B'
+    color: 'C2185B',
+    checkoutUrl: 'https://seusite.com/checkout/combo-pizza-refrigerante',
+    imageUrl: 'https://exemplo.com/imagens/combo-pizza-refrigerante.jpg'
   },
   {
     id: 16,
@@ -187,7 +217,9 @@ export const products: Product[] = [
     discount: 16,
     rating: 4.9,
     categoryId: 8,
-    color: 'D81B60'
+    color: 'D81B60',
+    checkoutUrl: 'https://seusite.com/checkout/combo-familia',
+    imageUrl: 'https://exemplo.com/imagens/combo-familia.jpg'
   }
 ];
 
