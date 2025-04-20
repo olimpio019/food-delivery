@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
 import { Product } from '../data/products';
+import Link from 'next/link';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { cartItem, addToCart, removeFromCart } = useContext(CartContext);
+  const { cartItem, addToCart, removeFromCart, getCheckoutUrl } = useContext(CartContext);
   
   const isInCart = cartItem?.id === product.id;
 
@@ -22,18 +23,33 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="bg-white rounded-2xl shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
       {/* Product Image */}
-      <div className="h-36 bg-gray-200 relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 200'%3E%3Crect fill='%23${product.color || 'F5F5F5'}' width='300' height='200'/%3E%3Ctext fill='%23555' font-family='sans-serif' font-size='18' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'%3E${product.name}%3C/text%3E%3C/svg%3E")`
-          }}
-        />
+      <div className="h-36 bg-gray-200 relative cursor-pointer">
+        <Link href={`/product/${product.id}/checkout`}>
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 200'%3E%3Crect fill='%23${product.color || 'F5F5F5'}' width='300' height='200'/%3E%3Ctext fill='%23555' font-family='sans-serif' font-size='18' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'%3E${product.name}%3C/text%3E%3C/svg%3E")`
+            }}
+          />
+        </Link>
+        
         {product.discount > 0 && (
           <div className="absolute top-2 left-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">
             {product.discount}% OFF
           </div>
         )}
+        
+        {/* Quick Checkout Button */}
+        <div className="absolute bottom-2 right-2">
+          <a
+            href={getCheckoutUrl(product)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-primary text-xs font-bold px-2 py-1 rounded-lg shadow-md hover:bg-primary hover:text-white transition-all duration-300"
+          >
+            Comprar
+          </a>
+        </div>
       </div>
       
       {/* Product Info */}

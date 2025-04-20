@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useEffect } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import Link from 'next/link';
 
 const CartModal: React.FC = () => {
   const { isCartOpen, toggleCart, cartItem, removeFromCart } = useContext(CartContext);
@@ -105,16 +106,33 @@ const CartModal: React.FC = () => {
               R$ {cartItem ? cartItem.price.toFixed(2) : '0.00'}
             </span>
           </div>
-          <button
-            className={`w-full py-3 rounded-xl font-bold text-white ${
-              cartItem
-                ? 'bg-primary hover:bg-primary/90'
-                : 'bg-gray-300 cursor-not-allowed'
-            } transition`}
-            disabled={!cartItem}
-          >
-            Finalizar Pedido
-          </button>
+          
+          {cartItem ? (
+            <a
+              href={cartItem.checkoutUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={toggleCart} 
+              className="block w-full py-3 rounded-xl font-bold text-white bg-primary hover:bg-primary/90 transition text-center"
+            >
+              Finalizar Pedido
+            </a>
+          ) : (
+            <button
+              disabled
+              className="w-full py-3 rounded-xl font-bold text-white bg-gray-300 cursor-not-allowed transition"
+            >
+              Finalizar Pedido
+            </button>
+          )}
+          
+          {cartItem && (
+            <div className="mt-2 text-center">
+              <p className="text-xs text-gray-500">
+                Você será redirecionado para o checkout externo com ID: #{cartItem.id}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
