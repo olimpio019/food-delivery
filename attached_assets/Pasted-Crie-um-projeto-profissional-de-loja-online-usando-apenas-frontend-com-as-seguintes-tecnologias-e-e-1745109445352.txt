@@ -1,0 +1,55 @@
+Crie um projeto profissional de loja online usando apenas frontend, com as seguintes tecnologias e estrutura:
+
+🔧 **Tecnologias:**
+- Next.js com TypeScript
+- Tailwind CSS (com configuração de tema customizado)
+- React Context API (para controle do carrinho)
+- Mobile First Design (responsivo)
+- Sem backend, mas simulado com arquivos JSON ou variáveis internas
+
+📁 **Estrutura de pastas:**
+- `components/`: Banner, Navbar, CategoryCard, ProductCard, CartModal, Footer
+- `contexts/`: CartContext.tsx para gerenciar o carrinho
+- `data/`: produtos e categorias simulados em arquivos `.ts`
+- `pages/`: index.tsx como homepage
+- `public/`: imagens dos produtos, categorias e banners
+- `styles/`: `globals.css` com Tailwind importado
+
+🎨 **Layout & Design (inspirado no iFood):**
+- Banner principal no topo com chamada para ação
+- Navbar fixa no topo com logo e ícone do carrinho
+- Categorias em carrossel horizontal (scroll suave)
+- Grade de produtos responsiva (2 colunas no mobile, 3+ no desktop)
+- CartModal abre ao clicar no ícone do carrinho, mostrando item atual e botão de finalizar compra (sem pagamento)
+- Footer com links simulados e infos de contato
+
+🧩 **Funcionalidades obrigatórias:**
+- Somente 1 item pode ser adicionado ao carrinho (impede múltiplos)
+- Ao clicar em “Adicionar ao carrinho”, o botão muda para “No Carrinho”
+- Carrinho flutuante com contador de item no ícone
+- Sem integração com API, apenas dados estáticos
+- Página inicial deve exibir:
+  - Banner (`public/banner.jpg`)
+  - Categorias horizontais (`data/categories.ts`)
+  - Produtos em grade (`data/products.ts`)
+
+💅 **Tailwind CSS:**
+- Tema customizado com cores primárias (vermelho, branco, cinza claro)
+- Bordas arredondadas (`rounded-2xl`), sombras suaves (`shadow-md`)
+- Tipografia moderna (`font-sans`, espaçamento balanceado)
+- Hover em produtos e botões com transições suaves
+
+🔄 **Comportamentos:**
+- Ao clicar no botão de compra, o produto é exibido no carrinho flutuante
+- Scroll horizontal suave nas categorias (`overflow-x-auto` com `scrollbar-hide`)
+- Carrinho pode ser aberto/fechado sem mudar de página
+
+🖼️ **Imagens:**
+- Adicione imagens fictícias em `/public` com nomes como `pizza.jpg`, `hamburguer.jpg`, `banner.jpg`
+
+🚀 **Ao final:**
+- Projeto deve rodar com `npm run dev`
+- Toda a navegação e simulação devem funcionar sem backend
+- O layout deve estar bonito e limpo em celulares, tablets e desktops
+
+Esse projeto será usado para vitrine de produtos e testes de checkout com gateways externos, por isso **não use backend ou API externa**.
