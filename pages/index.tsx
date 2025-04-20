@@ -4,13 +4,57 @@ import Banner from '../components/Banner';
 import CategoryCard from '../components/CategoryCard';
 import ProductCard from '../components/ProductCard';
 import { categories } from '../data/categories';
-import { products, getProductsByCategory } from '../data/products';
+import { Product, products as originalProducts, getProductsByCategory as originalGetProductsByCategory } from '../data/products';
 
 const Home: React.FC = () => {
   const router = useRouter();
   const { search } = router.query;
   const [selectedCategory, setSelectedCategory] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [products, setProducts] = useState<Product[]>([]);
+  
+  // Load product settings from localStorage
+  useEffect(() => {
+    const loadProductSettings = () => {
+      // Start with original products
+      let productsWithSettings = [...originalProducts];
+      
+      // Check if we have saved settings
+      const savedSettings = typeof window !== 'undefined' ? localStorage.getItem('productSettings') : null;
+      
+      if (savedSettings) {
+        try {
+          const settings = JSON.parse(savedSettings);
+          
+          // Apply settings to products
+          productsWithSettings = originalProducts.map(product => {
+            const productSetting = settings.find((s: any) => s.id === product.id);
+            
+            if (productSetting) {
+              return {
+                ...product,
+                imageUrl: productSetting.imageUrl || product.imageUrl,
+                checkoutUrl: productSetting.checkoutUrl || product.checkoutUrl
+              };
+            }
+            
+            return product;
+          });
+        } catch (error) {
+          console.error('Error loading product settings:', error);
+        }
+      }
+      
+      setProducts(productsWithSettings);
+    };
+    
+    loadProductSettings();
+  }, []);
+  
+  // Function to get products by category with settings applied
+  const getProductsByCategory = (categoryId: number): Product[] => {
+    return products.filter(product => product.categoryId === categoryId);
+  };
   
   useEffect(() => {
     // Update the search query when the URL parameter changes
@@ -41,7 +85,8 @@ const Home: React.FC = () => {
     return filtered;
   };
   
-  const filteredProducts = getFilteredProducts();
+  // Wait for products to be loaded before filtering
+  const filteredProducts = products.length > 0 ? getFilteredProducts() : [];
 
   const handleCategorySelect = (categoryId: number) => {
     setSelectedCategory(categoryId);

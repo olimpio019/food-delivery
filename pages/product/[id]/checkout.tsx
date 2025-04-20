@@ -14,21 +14,48 @@ const ProductCheckout: React.FC = () => {
     if (id) {
       // Encontrar o produto pelo ID
       const productId = parseInt(id as string);
-      const foundProduct = products.find(p => p.id === productId);
+      let foundProduct = products.find(p => p.id === productId);
       
       if (foundProduct) {
+        // Verificar se existem configurações guardadas para o produto
+        const savedSettings = typeof window !== 'undefined' ? localStorage.getItem('productSettings') : null;
+        
+        if (savedSettings) {
+          try {
+            const settings = JSON.parse(savedSettings);
+            const productSetting = settings.find((s: any) => s.id === foundProduct.id);
+            
+            if (productSetting) {
+              // Aplicar as configurações salvas
+              foundProduct = {
+                ...foundProduct,
+                imageUrl: productSetting.imageUrl || foundProduct.imageUrl,
+                checkoutUrl: productSetting.checkoutUrl || foundProduct.checkoutUrl
+              };
+            }
+          } catch (error) {
+            console.error('Erro ao carregar configurações do produto:', error);
+          }
+        }
+        
         setProduct(foundProduct);
         
-        // Gerar URL de checkout simulado para o produto
-        const baseUrl = 'https://checkout.example.com';
-        const params = new URLSearchParams({
-          product_id: foundProduct.id.toString(),
-          price: foundProduct.price.toString(),
-          name: foundProduct.name,
-          currency: 'BRL'
-        });
+        // Usar o checkout URL configurado ou gerar um simulado
+        let checkoutUrl = foundProduct.checkoutUrl;
+        if (!checkoutUrl) {
+          // Gerar URL de checkout simulado
+          const baseUrl = 'https://checkout.example.com';
+          const params = new URLSearchParams({
+            product_id: foundProduct.id.toString(),
+            price: foundProduct.price.toString(),
+            name: foundProduct.name,
+            currency: 'BRL'
+          });
+          
+          checkoutUrl = `${baseUrl}?${params.toString()}`;
+        }
         
-        setCheckoutUrl(`${baseUrl}?${params.toString()}`);
+        setCheckoutUrl(checkoutUrl);
       }
       
       setLoading(false);
@@ -67,7 +94,9 @@ const ProductCheckout: React.FC = () => {
               <div 
                 className="w-full md:w-1/3 h-48 bg-gray-200 rounded-xl mr-0 md:mr-6 mb-4 md:mb-0 bg-cover bg-center"
                 style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 200'%3E%3Crect fill='%23${product.color || 'F5F5F5'}' width='300' height='200'/%3E%3Ctext fill='%23555' font-family='sans-serif' font-size='18' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'%3E${product.name}%3C/text%3E%3C/svg%3E")`
+                  backgroundImage: product.imageUrl 
+                    ? `url("${product.imageUrl}")` 
+                    : `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 300 200'%3E%3Crect fill='%23${product.color || 'F5F5F5'}' width='300' height='200'/%3E%3Ctext fill='%23555' font-family='sans-serif' font-size='18' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle'%3E${product.name}%3C/text%3E%3C/svg%3E")`
                 }}
               ></div>
               
