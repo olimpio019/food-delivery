@@ -139,6 +139,21 @@ const ProductCheckout: React.FC = () => {
                   </p>
                 </div>
                 
+                {product.id === 7 && (
+                  <div className="mb-6">
+                    <h3 className="text-sm font-medium text-gray-700 mb-2">Escolha sua bebida de brinde:</h3>
+                    <select 
+                      className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                      defaultValue=""
+                    >
+                      <option value="" disabled>Selecione uma bebida</option>
+                      <option value="coca">Coca-Cola 350ml</option>
+                      <option value="guarana">Guaraná 350ml</option>
+                      <option value="suco">Suco Natural 300ml</option>
+                    </select>
+                  </div>
+                )}
+
                 <div className="flex space-x-4">
                   <a
                     href={checkoutUrl}
