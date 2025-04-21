@@ -57,14 +57,14 @@ export const products: Product[] = [
   },
   {
     id: 5,
-    name: 'Macarrão Carbonara',
+    name: 'Macarrão Carbonara p/2',
     description: 'Espaguete, ovo, queijo parmesão, bacon e pimenta preta',
     price: 27.99,
     discount: 0,
     rating: 4.5,
     categoryId: 3,
     color: 'FB8C00',
-    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=your-id-here',
+    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=dhjxxu9r0vfdz7y4stw7rv8a',
     imageUrl: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=600&auto=format&fit=crop'
   },
   {
@@ -78,13 +78,13 @@ export const products: Product[] = [
     categoryId: 1,
     isFeatured: true,
     color: 'FFA726',
-    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=your-id-here',
+    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=j5yi0honebliahrjc80mdk2t',
     imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=600&auto=format&fit=crop'
   },
   {
     id: 7,
-    name: 'Hambúrguer Bacon Premium',
-    description: 'Burger 180g, bacon crocante, queijo cheddar e molho barbecue',
+    name: 'Hambúrguer Bacon Premium mais bebida',
+    description: 'Burger 180g, bacon crocante, queijo cheddar e molho barbecue. uma bebida de brinde',
     price: 36.99,
     originalPrice: 42.99,
     discount: 14,
@@ -92,12 +92,12 @@ export const products: Product[] = [
     categoryId: 2,
     isFeatured: true,
     color: 'FF5722',
-    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=your-id-here',
+    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=btb6vfc363r4d711u1h8pp9s',
     imageUrl: 'https://images.unsplash.com/photo-1551615593-ef5fe247e8f7?q=80&w=600&auto=format&fit=crop'
   },
   {
     id: 8,
-    name: 'Salada Caesar Premium',
+    name: 'Salada Caesar Premium p/2',
     description: 'Alface romana, frango grelhado, croutons, parmesão e molho caesar',
     price: 29.99,
     originalPrice: 34.99,
@@ -105,7 +105,7 @@ export const products: Product[] = [
     rating: 4.6,
     categoryId: 3,
     color: '8BC34A',
-    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=your-id-here',
+    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=zocuvsiqjko8yz5ewcecdhuj',
     imageUrl: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop'
   },
   {
