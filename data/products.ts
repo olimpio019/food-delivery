@@ -97,8 +97,8 @@ export const products: Product[] = [
   },
   {
     id: 8,
-    name: 'Salada Caesar Premium p/2 + Bebida',
-    description: 'Alface romana, frango grelhado, croutons, parmesão e molho caesar. Escolha sua bebida de brinde: Coca-Cola, Guaraná ou Suco Natural.',
+    name: 'Salada Caesar Premium p/2',
+    description: 'Alface romana, frango grelhado, croutons, parmesão e molho caesar',
     price: 29.99,
     originalPrice: 34.99,
     discount: 14,
