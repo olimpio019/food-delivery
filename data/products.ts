@@ -111,7 +111,7 @@ export const products: Product[] = [
   {
     id: 9,
     name: 'Sushi Combo Especial',
-    description: '16 peças variadas de sushi e sashimi premium',
+    description: '95 peças variadas de sushi e sashimi premium',
     price: 69.99,
     originalPrice: 79.99,
     discount: 12,
@@ -119,7 +119,7 @@ export const products: Product[] = [
     categoryId: 4,
     isFeatured: true,
     color: 'E91E63',
-    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=your-id-here',
+    checkoutUrl: 'https://web.syncpay.pro/v3/checkout/?id=z8epgvvirgpyddxb9y4vfknx',
     imageUrl: 'https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=600&auto=format&fit=crop'
   },
   {

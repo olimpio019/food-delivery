@@ -143,10 +143,23 @@ const ProductCheckout: React.FC = () => {
                   <div className="mb-6">
                     <h3 className="text-sm font-medium text-gray-700 mb-2">Escolha sua bebida de brinde:</h3>
                     <select 
+                      id="drinkSelect"
                       className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                       defaultValue=""
+                      onChange={(e) => {
+                        const button = document.getElementById('checkoutButton') as HTMLAnchorElement;
+                        if (e.target.value) {
+                          button.classList.remove('opacity-50', 'cursor-not-allowed');
+                          button.classList.add('hover:bg-primary/90');
+                          button.style.pointerEvents = 'auto';
+                        } else {
+                          button.classList.add('opacity-50', 'cursor-not-allowed');
+                          button.classList.remove('hover:bg-primary/90');
+                          button.style.pointerEvents = 'none';
+                        }
+                      }}
                     >
-                      <option value="" disabled>Selecione uma bebida</option>
+                      <option value="">Selecione uma bebida</option>
                       <option value="coca">Coca-Cola 350ml</option>
                       <option value="guarana">Guaraná 350ml</option>
                       <option value="suco">Suco Natural 300ml</option>
@@ -156,7 +169,10 @@ const ProductCheckout: React.FC = () => {
 
                 <div className="flex space-x-4">
                   <a
+                    id="checkoutButton"
                     href={checkoutUrl}
+                    className={`flex-1 bg-primary text-white py-3 rounded-xl font-bold text-center ${product.id === 7 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary/90'}`}
+                    style={{ pointerEvents: product.id === 7 ? 'none' : 'auto' }}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 bg-primary text-white py-3 rounded-xl font-bold hover:bg-primary/90 transition text-center"
