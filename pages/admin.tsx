@@ -111,8 +111,8 @@ const Admin: React.FC = () => {
       originalPrice: newProduct.originalPrice || undefined,
       discount: newProduct.discount || 0,
       categoryId: newProduct.categoryId || 1,
-      imageUrl: newProduct.imageUrl || undefined,
-      checkoutUrl: newProduct.checkoutUrl || undefined,
+      imageUrl: newProduct.imageUrl || "",
+      checkoutUrl: newProduct.checkoutUrl || "",
       color: newProduct.color || 'F5F5F5',
       isFeatured: false,
     };
