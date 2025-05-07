@@ -4,12 +4,21 @@ import { categories } from '../data/categories';
 import Link from 'next/link';
 
 // Interface para o produto com configurações adicionais
-interface ProductWithSettings {
+interface Product {
   id: number;
   name: string;
-  checkoutUrl: string;
-  imageUrl: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  discount: number;
+  categoryId: number;
+  imageUrl?: string;
+  checkoutUrl?: string;  // Permitir undefined
+  color: string;
+  rating?: number;
+  isFeatured?: boolean;
 }
+
 
 const Admin: React.FC = () => {
   // Estado para armazenar os produtos com suas configurações
