@@ -193,92 +193,68 @@ const Admin: React.FC = () => {
       return;
     }
     
-    // Atualizar o produto na lista de produtos personalizados
-    const updatedCustomProducts = customProducts.map(product => {
-      if (product.id === editProductId) {
-        return {
-          ...product,
-          name: newProduct.name || '',
-          description: newProduct.description || '',
-          price: newProduct.price || 0,
-          originalPrice: newProduct.originalPrice || undefined,
-          discount: newProduct.discount || 0,
-          categoryId: newProduct.categoryId || 1,
-          imageUrl: newProduct.imageUrl || undefined,
-          checkoutUrl: newProduct.checkoutUrl || undefined,
-          color: newProduct.color || 'F5F5F5',
-        };
-      }
-      return product;
-    });
-    
-    setCustomProducts(updatedCustomProducts);
-    
-    // Atualizar nas configurações do produto
-    const updatedSettings = productSettings.map(product => {
-      if (product.id === editProductId) {
-        return {
-          ...product,
-          name: newProduct.name || '',
-          imageUrl: newProduct.imageUrl || '',
-          checkoutUrl: newProduct.checkoutUrl || '',
-        };
-      }
-      return product;
-    });
-    
-    setProductSettings(updatedSettings);
-    
-    // Salvar no localStorage
-    localStorage.setItem('customProducts', JSON.stringify(updatedCustomProducts));
-    localStorage.setItem('productSettings', JSON.stringify(updatedSettings));
-    
-    // Resetar o formulário e o modo de edição
-    setNewProduct({
-      name: '',
-      description: '',
-      price: 0,
-      originalPrice: 0,
-      discount: 0,
-      categoryId: 1,
-      imageUrl: '',
-      checkoutUrl: '',
-      color: 'F5F5F5',
-    });
-    
-    setEditProductId(null);
-    
-    // Exibir mensagem de sucesso
-    setMessage('Produto atualizado com sucesso!');
-    setShowMessage(true);
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 3000);
-  };
-  
-  // Função para excluir um produto
-  const handleDeleteProduct = (id: number) => {
-    if (!confirm('Tem certeza que deseja excluir este produto?')) return;
-    
-    // Remover da lista de produtos personalizados
-    const updatedCustomProducts = customProducts.filter(product => product.id !== id);
-    setCustomProducts(updatedCustomProducts);
-    
-    // Remover das configurações do produto
-    const updatedSettings = productSettings.filter(product => product.id !== id);
-    setProductSettings(updatedSettings);
-    
-    // Salvar no localStorage
-    localStorage.setItem('customProducts', JSON.stringify(updatedCustomProducts));
-    localStorage.setItem('productSettings', JSON.stringify(updatedSettings));
-    
-    // Exibir mensagem de sucesso
-    setMessage('Produto excluído com sucesso!');
-    setShowMessage(true);
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 3000);
-  };
+  // Atualizar o produto na lista de produtos personalizados
+const updatedCustomProducts = customProducts.map(product => {
+  if (product.id === editProductId) {
+    return {
+      ...product,
+      name: newProduct.name || '',
+      description: newProduct.description || '',
+      price: newProduct.price || 0,
+      originalPrice: newProduct.originalPrice || undefined,
+      discount: newProduct.discount || 0,
+      categoryId: newProduct.categoryId || 1,
+      imageUrl: newProduct.imageUrl || '', // Alterado aqui
+      checkoutUrl: newProduct.checkoutUrl || '', // Alterado aqui
+      color: newProduct.color || 'F5F5F5',
+    };
+  }
+  return product;
+});
+
+setCustomProducts(updatedCustomProducts);
+
+// Atualizar nas configurações do produto
+const updatedSettings = productSettings.map(product => {
+  if (product.id === editProductId) {
+    return {
+      ...product,
+      name: newProduct.name || '',
+      imageUrl: newProduct.imageUrl || '', // Alterado aqui
+      checkoutUrl: newProduct.checkoutUrl || '', // Alterado aqui
+    };
+  }
+  return product;
+});
+
+setProductSettings(updatedSettings);
+
+// Salvar no localStorage
+localStorage.setItem('customProducts', JSON.stringify(updatedCustomProducts));
+localStorage.setItem('productSettings', JSON.stringify(updatedSettings));
+
+// Resetar o formulário e o modo de edição
+setNewProduct({
+  name: '',
+  description: '',
+  price: 0,
+  originalPrice: 0,
+  discount: 0,
+  categoryId: 1,
+  imageUrl: '',
+  checkoutUrl: '',
+  color: 'F5F5F5',
+});
+
+setEditProductId(null);
+
+// Exibir mensagem de sucesso
+setMessage('Produto atualizado com sucesso!');
+setShowMessage(true);
+setTimeout(() => {
+  setShowMessage(false);
+}, 3000);
+};
 
   // Funções auxiliares para o formulário
   const handleInputChange = (field: string, value: string | number) => {
