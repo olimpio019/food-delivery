@@ -59,8 +59,16 @@ const Admin: React.FC = () => {
       const initialSettings = originalProducts.map((product: Product) => ({
         id: product.id,
         name: product.name,
+        description: product.description,
+        price: product.price,
+        originalPrice: product.originalPrice,
+        discount: product.discount,
+        categoryId: product.categoryId,
+        imageUrl: product.imageUrl || '',
         checkoutUrl: product.checkoutUrl || '',
-        imageUrl: product.imageUrl || ''
+        color: product.color || 'F5F5F5',
+        rating: product.rating,
+        isFeatured: product.isFeatured
       }));
       setProductSettings(initialSettings);
     }
