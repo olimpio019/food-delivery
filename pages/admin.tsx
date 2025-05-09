@@ -4,7 +4,7 @@ import { categories } from '../data/categories';
 import Link from 'next/link';
 
 // Interface para o produto com configurações adicionais
-interface Product {
+interface ProductWithSettings {
   id: number;
   name: string;
   description: string;
